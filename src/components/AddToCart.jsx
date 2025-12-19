@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import GlobalContext from '../Contexts/GlobalContext';
+import { toast } from 'react-toastify';
 
 const AddToCart = ({ product }) => {
-  const { cart, setCart } = useContext(GlobalContext);
+  const context = useContext(GlobalContext);
+  const cart = context?.cart || [];
+  const setCart = context?.setCart || (() => {});
 
   const handleAdd = async () => {
     try {
@@ -12,7 +15,7 @@ const AddToCart = ({ product }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: product.id,
+          id: product.id || product._id,
           name: product.name,
           price: product.price,
           image: product.image,
@@ -21,7 +24,6 @@ const AddToCart = ({ product }) => {
       });
       
       if (response.ok) {
-        // Update local cart state
         const exists = cart.find(item => item.id === product.id);
         if (exists) {
           setCart(
@@ -34,15 +36,19 @@ const AddToCart = ({ product }) => {
         } else {
           setCart([...cart, { ...product, qty: 1 }]);
         }
+        toast.success('Product added to cart successfully!');
       }
     } catch (error) {
       console.error('Error adding to cart:', error);
+      toast.error('Failed to add product to cart');
     }
   };
 
   return (
-    <button onClick={handleAdd} className="bg-slate-900 hover:bg-slate-700 text-white px-4 py-1 mt-2 rounded-lg shadow-xl w-[150px]">
-      Add to Cart   
+    <button 
+      onClick={handleAdd} 
+      className="w-full bg-red-800 hover:bg-black text-white py-2 px-4 rounded font-semibold transition-all duration-300 transform hover:scale-108">
+      Add to Cart
     </button>
   );
 };

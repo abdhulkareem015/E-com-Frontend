@@ -38,7 +38,7 @@
 // }
 
 import { useContext } from "react";
-import GlobalContext from "../contexts/GlobalContext"; 
+import GlobalContext from "../Contexts/GlobalContext"; 
 
 
 

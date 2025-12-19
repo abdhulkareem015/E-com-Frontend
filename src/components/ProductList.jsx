@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 
+
 const ProductList=()=>{
     const [products, setProducts] = useState([]);
 
@@ -18,24 +19,24 @@ const ProductList=()=>{
     }, []);
 
     return(
-        <>
-        <div className="min-h-screen mx-auto flex-col gap-4 bg-gray-500 w-full p-4 shadow-lg">
-            <h1 className="text-2xl font-bold mb-15 mt-10 text-center">PROUDCUT LIST</h1>
-            <div className="flex flex-row mb-20 mt-30 justify-center gap-30">
-                
-            {products.map((product)=>{
-
-                return(
-                    <ProductCard key={product.id}
-                      name={product.name}
-                      price={product.price}
-                      image={product.image} 
-                      id={product.id} />
-                )
-      })}
-      {/* <OrderSummary/> */}
-
-
+      <>
+        <div className="min-h-screen bg-gray-800 py-8">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                    <h1 className="text-5xl font-bold text-white mb-4">Explore Here</h1>
+                    </div>
+                <div className="grid grid-cols-4 gap-6">
+                    {products.map((product)=>{
+                        return(
+                            <ProductCard key={product._id}
+                              name={product.name}
+                              price={product.price}
+                              image={product.image} 
+                              id={product.id}
+                              _id={product._id} />
+                        )
+                    })}
+                </div>
             </div>
         </div>
         </>

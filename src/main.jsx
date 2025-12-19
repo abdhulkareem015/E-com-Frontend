@@ -11,6 +11,9 @@ import ProductDetails from './components/ProductDetails.jsx'
 import LoginForm from './components/LoginForm.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import AdminPage from './components/AdminPage.jsx'
+import Cart from './components/Cart.jsx'
+import Checkout from './components/Checkout.jsx'
+import Orders from './components/Orders.jsx'
 import { ToastContainer } from 'react-toastify'
 
 
@@ -50,6 +53,9 @@ createRoot(document.getElementById('root')).render(
         </Route>
         <Route path='/About' element={<About />} />
         <Route path='/Contact' element={<Contact />} />
+        <Route path='/carts' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/orders' element={<Orders />} />
       </Route>
 
       <Route path='/login' element={<LoginForm />} />
